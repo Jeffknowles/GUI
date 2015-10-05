@@ -21,10 +21,12 @@
 
 */
 
-
+#include <ctime>
 #include <stdio.h>
 #include "RecordControl.h"
 #include "../../UI/ControlPanel.h"
+
+const long double recordBounceTime = 0.05;
 
 RecordControl::RecordControl()
     : GenericProcessor("Record Control"),
@@ -81,19 +83,22 @@ void RecordControl::handleEvent(int eventType, MidiMessage& event, int)
 
     int eventId = *(dataptr+2);
     int eventChannel = *(dataptr+3);
+    long double triggerTime = time(0);
+    // std::cout << "Received event with id=" << eventId << " and ch=" << eventChannel << std::endl;
 
-    //std::cout << "Received event with id=" << eventId << " and ch=" << eventChannel << std::endl;
-
-    if (eventType == TTL && eventChannel == triggerChannel)
+    if (eventType == TTL && eventChannel == triggerChannel && triggerTime >= lastTime + recordBounceTime)
     {
-
-        //std::cout << "Trigger!" << std::endl;
+        lastTime = triggerTime;
+        // std::cout << "Trigger!" << std::endl;
+        // std::cout << "Received event with id=" << eventId << " and ch=" << eventChannel << std::endl;
+        // std::cout << triggerTime << std::endl;
 
         const MessageManagerLock mmLock;
 
         if (eventId == 1)
         {
             getControlPanel()->setRecordState(true);
+
         }
         else
         {

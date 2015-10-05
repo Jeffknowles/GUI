@@ -48,7 +48,6 @@ public:
     void updateTriggerChannel(int newChannel);
     void handleEvent(int eventType, MidiMessage& event, int);
     bool enable();
-
     bool isUtility()
     {
         return true;
@@ -58,7 +57,7 @@ public:
 
 private:
     int triggerChannel;
-
+    long double lastTime = 0; 
 
     RecordNode* recordNode;
 
