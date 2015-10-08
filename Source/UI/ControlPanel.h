@@ -304,10 +304,16 @@ public:
     void setRecordState(bool isRecording);
     /** Returns a boolean that indicates whether or not the FilenameComponet
         is visible. */
+    bool getRecordState()
+      {
+        return isRecording;
+      }
+
     bool isOpen()
     {
         return open;
     }
+
 
     /** Notifies the control panel when the filename is updated */
     void labelTextChanged(Label*);
@@ -387,6 +393,8 @@ private:
     Font font;
 
     bool open;
+
+    bool isRecording = false;
 
     Path p1, p2;
 

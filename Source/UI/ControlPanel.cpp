@@ -687,7 +687,8 @@ void ControlPanel::labelTextChanged(Label* label)
 
 void ControlPanel::startRecording()
 {
-
+    std::cout << "StartRecording!JK" << std::endl;
+    isRecording = true;
     masterClock->startRecording(); // turn on recording
     backgroundColour = Colour(255,0,0);
     prependText->setEditable(false);
@@ -701,8 +702,9 @@ void ControlPanel::startRecording()
 
 void ControlPanel::stopRecording()
 {
+    isRecording = false;
     graph->setRecordState(false); // turn off recording in processor graph
-
+    std::cout << "StopRecording!JK" << std::endl;
     masterClock->stopRecording();
     newDirectoryButton->setEnabledState(true);
     backgroundColour = Colour(58,58,58);
@@ -711,7 +713,7 @@ void ControlPanel::stopRecording()
     appendText->setEditable(true);
 
     recordButton->setToggleState(false, dontSendNotification);
-
+    masterClock->resetRecordTime();
     repaint();
 }
 
