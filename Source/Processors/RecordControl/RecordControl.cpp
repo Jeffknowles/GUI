@@ -26,7 +26,7 @@
 #include "RecordControl.h"
 #include "../../UI/ControlPanel.h"
 
-const long double recordBounceTime = 0.5;
+const long double recordBounceTime = 2;
 bool recordState = false;
 
 RecordControl::RecordControl()
