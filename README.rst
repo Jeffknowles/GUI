@@ -1,3 +1,14 @@
+This Fork is designed to work nicley with kranky (https://bitbucket.org/spikeCoder/kranky/overview), a lightweight python auditory stimulus presenter. It has two minor changes from the main open-ephys version. 
+
+1) Everytime the recording is started, a new data directory is created regardless of user input. This replaces the recording index in the default version.
+
+2) The record control has some minor changes. 1) It takes a transient ttl pulse to either start or stop the recording rather than running recording as long as the record control channel is high. 2) It debounces the record control channel with a bounce time set in the code.  This stops the program from crashing if it gets record control signals too quickly.  
+
+
+Jeff Knowles, UCSF (jeff.knowles@gmail.com)
+
+
+
 ==================================
 Welcome to the Open Ephys project!
 ==================================
