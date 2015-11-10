@@ -1,4 +1,4 @@
-This Fork is designed to work nicley with kranky, a lightweight python auditory stimulus presenter. It has two minor changes from the main open-ephys version. 
+This Fork is designed to work nicley with [kranky](https://bitbucket.org/spikeCoder/kranky/overview), a lightweight python auditory stimulus presenter. It has two minor changes from the main open-ephys version. 
 
 1) Everytime the recording is started, a new data directory is created regardless of user input. This replaces the recording index in the default version.
 
