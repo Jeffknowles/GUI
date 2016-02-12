@@ -42,6 +42,8 @@
 #define REGISTER_59_MISO_A  53
 #define REGISTER_59_MISO_B  58
 
+#define BUFFER_SIZE = 20000
+
 // Allocates memory for a 3-D array of doubles.
 void allocateDoubleArray3D(std::vector<std::vector<std::vector<double> > >& array3D,
                            int xSize, int ySize, int zSize)
@@ -83,7 +85,7 @@ RHD2000Thread::RHD2000Thread(SourceNode* sn) : DataThread(sn),
 {
     evalBoard = new Rhd2000EvalBoard;
     dataBlock = new Rhd2000DataBlock(1);
-    dataBuffer = new DataBuffer(2, 10000); // start with 2 channels and automatically resize
+    dataBuffer = new DataBuffer(2, BUFFER_SIZE); // start with 2 channels and automatically resize
 
     // Open Opal Kelly XEM6010 board.
     // Returns 1 if successful, -1 if FrontPanel cannot be loaded, and -2 if XEM6010 can't be found.
@@ -1086,7 +1088,7 @@ bool RHD2000Thread::enableHeadstage(int hsNum, bool enabled)
     std:: cout << std::endl;
 
 
-    dataBuffer->resize(getNumChannels(), 10000);
+    dataBuffer->resize(getNumChannels(), BUFFER_SIZE);
 
     return true;
 }
@@ -1130,7 +1132,7 @@ void RHD2000Thread::enableAdcs(bool t)
 
     acquireAdcChannels = t;
 
-    dataBuffer->resize(getNumChannels(), 10000);
+    dataBuffer->resize(getNumChannels(), BUFFER_SIZE);
     //updateChannelNames();
 }
 
