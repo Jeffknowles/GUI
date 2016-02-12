@@ -42,7 +42,7 @@
 #define REGISTER_59_MISO_A  53
 #define REGISTER_59_MISO_B  58
 
-#define BUFFER_SIZE = 20000
+#define BUFFER_SIZE 20000
 
 // Allocates memory for a 3-D array of doubles.
 void allocateDoubleArray3D(std::vector<std::vector<std::vector<double> > >& array3D,
