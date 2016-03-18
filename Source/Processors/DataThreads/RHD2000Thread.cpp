@@ -44,6 +44,7 @@
 #define REGISTER_59_MISO_B  58
 #define RHD2132_16CH_OFFSET 8
 
+#define BUFFER_SIZE 10000
 //#define DEBUG_EMULATE_HEADSTAGES 8
 //#define DEBUG_EMULATE_64CH
 
@@ -97,7 +98,7 @@ RHD2000Thread::RHD2000Thread(SourceNode* sn) : DataThread(sn),
         headstagesArray.add(new RHDHeadstage(static_cast<Rhd2000EvalBoard::BoardDataSource>(i)));
 
     evalBoard = new Rhd2000EvalBoard;
-    dataBuffer = new DataBuffer(2, 10000); // start with 2 channels and automatically resize
+    dataBuffer = new DataBuffer(2, BUFFER_SIZE); // start with 2 channels and automatically resize
 
     // Open Opal Kelly XEM6010 board.
     // Returns 1 if successful, -1 if FrontPanel cannot be loaded, and -2 if XEM6010 can't be found.
@@ -1085,7 +1086,7 @@ bool RHD2000Thread::enableHeadstage(int hsNum, bool enabled, int nStr, int strCh
         std::cout << numChannelsPerDataStream[i] << " ";
     }*/
 
-    dataBuffer->resize(getNumChannels(), 10000);
+    dataBuffer->resize(getNumChannels(), BUFFER_SIZE);
 
     return true;
 }
@@ -1155,7 +1156,7 @@ void RHD2000Thread::enableAdcs(bool t)
 
     acquireAdcChannels = t;
 
-    dataBuffer->resize(getNumChannels(), 10000);
+    dataBuffer->resize(getNumChannels(), BUFFER_SIZE);
 
 }
 

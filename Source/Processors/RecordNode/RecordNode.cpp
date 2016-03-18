@@ -294,7 +294,8 @@ void RecordNode::setParameter(int parameterIndex, float newValue)
         hasRecorded = true;
         // std::cout << "START RECORDING." << std::endl;
 
-        if (newDirectoryNeeded)
+        // if (newDirectoryNeeded)
+        if (true)
         {
             createNewDirectory();
             recordingNumber = 0;
